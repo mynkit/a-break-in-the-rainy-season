@@ -46,7 +46,7 @@ d3
   $ fast 5
   $ (|* gain (range 0.7 1 rand))
   $ mix ((|+ n 12).(|* gain 0.4))
-  $ degradeBy 0.7
+  $ degradeBy 0.9
   $ s "~ SinOscSynthBend ~ SinOscSynthBend? ~ ~"
   # n (46 + irand 5)
   # sustain (range (0.4) (0.17) rand)
@@ -83,13 +83,13 @@ d4
 d6
   $ slow 5
   $ someCyclesBy 0.2 (degradeBy 1)
-  $ (|* gain (range 0.7 0.8 sine))
+  $ (|* gain (range 0.7 0.8 (fast 7 rand)))
   $ sometimesBy 0.9 (|* gain "1 1!2 0 1!14")
-  $ sometimesBy 0.7 (|* gain "1 1 0 0 1!14")
+  $ sometimesBy 0.75 (|* gain "1 1 0 0 1!14")
+  $ (# theta (range (0.5) (1.5) (fast 3 rand)))
   $ s "~ jungleCrow!2 jungleCrow? ~!14"
-  # sustain (range 0.5 0.7 rand)
+  # sustain (range 0.6 0.8 rand)
   # room 0.1 # size 0.35
-  # theta (range (1) (0.7) rand)
-  # vibratoDepth (range 3 5 (fast 3 rand))
+  # vibratoDepth (range 3 6 (fast 5 rand))
   # lpf 500
-  # gain 1.3
+  # gain 1.25
