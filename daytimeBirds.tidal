@@ -2,6 +2,8 @@ bpm = 55
 
 setcps (bpm/60/4)
 
+all $ (|* gain 1.1)
+
 --
 d1
   $ every' 2 1 (degradeBy 1)
@@ -11,7 +13,7 @@ d1
   $ sometimesBy 0.3 ((1/128) ~>)
   $ (|- n "0 5 0 0 5 0 0 5 0 ~!8")
   $ (|* gain "1 1 0.8 1 1 0.8 1 1 0.8 ~!8")
-  $ someCyclesBy 0.1 (|* gain "1 1 1 1 1 0 0 0 0 ~!8")
+  $ someCyclesBy 0.1 (|* gain  "1 1 1 1 1 0 0 0 0 ~!8")
   $ someCyclesBy 0.2 (|* gain "1 1 1 1 1 1 1 1 0 ~!8")
   $ s "SinOscSynthBend!3 SinOscSynthBend!3 SinOscSynthBend!3 ~!8"
   # n (36 + irand 5)
