@@ -20,7 +20,7 @@ d1
   # sustain 0.17
   # accelerate "-8 -8 3 -8 -8 3 -8 -8 3 ~!8"
   # hpf 8000
-  # real 0.5
+  # real 0.5 # realHpf 100
   # gain 1.6
   # room 0.3 # freeverb 0.5 # size 0.8
   # theta (range 0.3 0.4 (fast 4 rand))
@@ -38,13 +38,14 @@ d2
   # sustain (range 0.1 0.15 ((fast 5 rand)*(fast 5 rand)))
   # accelerate "-4"
   # hpf 9000
-  # real 0.5
+  # real 0.5 # realHpf 100
   # gain 2
   # room 0.3 # freeverb 0.5 # size 0.7
   # theta (range (-0.3) (-0.5) (fast 31 rand))
 
 -- high
 d3
+  $ (|* gain 1.2)
   $ fast 5
   $ (|* gain (range 0.7 1 rand))
   $ mix ((|+ n 12).(|* gain 0.4))
@@ -54,8 +55,8 @@ d3
   # sustain (range (0.4) (0.17) rand)
   # accelerate (range (-5) (-8) rand)
   # hpf 7500
-  # real 0.5
-  # gain 0.9
+  # real 0.5 # realHpf 100
+  # gain 0.85
   # room 0.1
   # freeverb 0.5
   # size 0.8
@@ -75,11 +76,11 @@ d4
   # sustain 0.09
   # accelerate (-8)
   # hpf 6000
-  # real 0.5
+  # real 0.5 # realHpf 100
   # theta (range (0.2) (0) (fast 15 $ rand))
   # phi (range (-0.5) (0.5) (fast 7 $ rand))
   # freeverb 0.3 # size 0.7
-  # gain 1.8
+  # gain 1.85
 
 -- jungleCrow
 d6

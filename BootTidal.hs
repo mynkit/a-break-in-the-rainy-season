@@ -103,6 +103,12 @@ phi = pF "phi"
 :}
 
 :{
+real = pF "real"
+imag = pF "imag"
+realHpf = pI "realHpf"
+:}
+
+:{
 vibratoFreq = pF "vibratoFreq"
 vibratoDepth = pF "vibratoDepth"
 :}

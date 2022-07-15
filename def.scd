@@ -13,8 +13,8 @@ SuperDirt.start;
 )
 
 (
-Server.default.options.inDevice_("Soundflower (2ch)");
-Server.default.options.outDevice_("Soundflower (2ch)");
+Server.default.options.inDevice_("BlackHole 2ch");
+Server.default.options.outDevice_("BlackHole 2ch");
 Server.default.reboot;
 SuperDirt.start;
 )
@@ -45,6 +45,30 @@ SynthDef("HRTF" ++ ~dirt.numChannels, { |out, theta, phi|
     foa = FoaPanB.ar(in, theta, phi);
 	// decode our signal using our decoder defined above
     signal = FoaDecode.ar(foa, decoder);
+	ReplaceOut.ar(out, signal)
+}, [\ir]).add;
+
+// Conformer
+~dirt.addModule('spectral-conformer', { |dirtEvent|
+	dirtEvent.sendSynth('spectral-conformer' ++ ~dirt.numChannels,
+		[
+			real: ~real,
+			imag: ~imag,
+			realHpf: ~realHpf,
+			out: ~out
+		]
+	)
+}, { ~real.notNil or: { ~imag.notNil } or: { ~realHpf.notNil } });
+
+SynthDef("spectral-conformer" ++ ~dirt.numChannels, { |out, real = 0.5, imag = 0.5, realHpf = 100|
+	var signal, chain, in, clean, teeth = 256;
+	signal = In.ar(out, ~dirt.numChannels);
+	clean = signal;
+	chain = signal.asArray.collect { |x| FFT(LocalBuf(2048), x) };
+	signal = IFFT(
+			PV_ConformalMap(chain, real.linlin(0.0,1.0,0.01,2.0), imag.linlin(0.00,1.0,0.01,10.0))
+		).tanh;
+	signal = HPF.ar(signal, realHpf);
 	ReplaceOut.ar(out, signal)
 }, [\ir]).add;
 
