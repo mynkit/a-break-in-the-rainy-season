@@ -10,7 +10,7 @@ SynthDef("background", {
 )
 
 b = Synth("background", [\amp, 0]);
-b.set(\amp, 2);
+b.set(\amp, 1.5);
 
 
 
