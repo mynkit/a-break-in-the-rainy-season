@@ -81,21 +81,58 @@ do
     # accelerate (-8)
     # hpf 7000
     # real 0.5 # realHpf 300
-    # theta (range (0.2) (0) (fast 15 $ rand))
+    # theta (range (0.2) (-0.2) (fast 15 $ rand))
     # phi (range (-0.5) (0.5) (fast 7 $ rand))
     # freeverb 0.3 # size 0.7
     # gain 2
+  -- sparrow2
+  d5
+    $ fast (5/3)
+    $ sometimesBy 0.4 (degradeBy 1)
+    $ someCyclesBy 0.2 (degradeBy 1)
+    $ someCyclesBy 0.9 (|- n (choose [0,1,2]))
+    $ sometimesBy 0.75 (|* gain 0)
+    $ sometimesBy 0.4 ((1/4) ~>)
+    $ sometimesBy 0.2 (mix ((1/2) ~>))
+    $ someCyclesBy 0.9 (|- n (choose [0,1,2,3,4,(-3)]))
+    $ (|* gain (range 0.4 0.6 sine))
+    $ s "SinOscSynthBend!7 ~"
+    # n 47
+    # sustain 0.2
+    # accelerate (-8)
+    # hpf 7000
+    # real 0.5 # realHpf 300
+    # theta (range (-0.5) (0.5) (fast 15 $ rand))
+    # freeverb 0.3 # size 0.7
+    # gain 1.2
   -- jungleCrow
   d6
-    $ slow 5
-    $ someCyclesBy 0.2 (degradeBy 1)
+    $ slow 4
+    $ someCyclesBy 0.1 (degradeBy 1)
+    $ sometimesBy 0.4 ((1/4) ~>)
+    $ sometimesBy 0.2 ((1/2) ~>)
     $ (|* gain (range 0.7 0.8 (fast 7 rand)))
     $ sometimesBy 0.9 (|* gain "1 1!2 0 1!14")
     $ sometimesBy 0.75 (|* gain "1 1 0 0 1!14")
-    $ (# theta (range (0.5) (1.5) (fast 3 rand)))
+    $ (# theta (range (0.1) (0.45) (fast 3 rand)))
     $ s "~ jungleCrow!2 jungleCrow? ~!14"
-    # sustain (range 0.6 0.8 rand)
-    # room 0.1 # size 0.35
-    # vibratoDepth (range 3 6 (fast 5 rand))
-    # lpf 500
-    # gain 1.3
+    # sustain (range 0.4 0.8 (fast 17 rand))
+    # freeverb 0.8 # size 0.8
+    # vibratoDepth (range 2 3 (fast 11 rand))
+    # lpf 180
+    # gain 1.4
+  -- turtledove
+  d7
+    $ fast (1.75/2)
+    $ someCyclesBy 0.8 (degradeBy 1)
+    $ fast 2
+    $ while "f t" (0.005 ~>)
+    $ swingBy (1/32) 8
+    $ s (fit 0 ["turtledove"] "0 ~ 0 0 ~ 0 0 ~")
+    # n "f5 [f5 <f5,bf5>] <f5,a5,bf5> <af5,bf5>"
+    # sustain "0.4 [0.4 0.3] 0.31 0.5"
+    # gain 0.9
+    # freeverb 0.5 # size 0.8
+    # theta (range 0.35 0.45 rand)
+    # phi 0.3
+    # hpf 900

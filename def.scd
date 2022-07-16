@@ -398,7 +398,7 @@ SynthDef("frog", { arg out, pan=0, amp=0.1, variation=0.9;
 SynthDef(\jungleCrow, { arg out, pan=0, amp=0.1, variation=0.9, sustain=1, vibratoDepth=0;
 	var dt, n, freq, mul, t, u, chain, env, vibratoFreq=70, freqDiffRate=0.1, real=0.5, imag=0;
 	env = EnvGen.ar(Env.linen(0.04, 0, 1, 1, 8), timeScale: sustain, doneAction:2);
-	freq = 1000 + Rand(0, 10);
+	freq = 960 + Rand(0, 10);
 	freq = freq *(1+((LFPar.ar(vibratoFreq)+1)*(vibratoDepth/50)));
 	freq = freq*(1-freqDiffRate) + EnvGen.ar(Env.linen(0, 0, 1, freq*freqDiffRate, 7), timeScale:sustain);
 	u = 0;
@@ -440,20 +440,14 @@ SynthDef(\carrionCrow, { arg out, pan=0, amp=0.1, variation=0.9, sustain=1;
 	OffsetOut.ar(out, DirtPan.ar(u, ~dirt.numChannels, pan, env));
 }).add;
 
-SynthDef(\owl, { arg out, pan=0, amp=0.1, variation=0.9, sustain=1;
-	var freq, u, chain, env, vibratoFreq=50, vibratoDepth=2, freqDiffRate=0.2, real=0.5, imag=0;
-	env = EnvGen.ar(Env.linen(0.0, 0, 1, 1, 5), timeScale: sustain, doneAction:2);
-	// freq = 1244.508 + Rand(0, 323.474);
-	freq = 1300;
+// キジバト
+SynthDef(\turtledove, { arg out, pan=0, sustain=1, freq=410;
+	var dt, n, mul, t, u, chain, env, freqDiffRate=0.1, real=0.5, imag=0;
+	env = EnvGen.ar(Env.linen(0.04, 0, 1, 1, 5), timeScale: sustain, doneAction:2);
 	freq = freq*(1-freqDiffRate) + EnvGen.ar(Env.linen(0, 0, 1, freq*freqDiffRate, 5), timeScale:sustain);
-	u = SinOsc.ar(freq/4);
-	// spectral-conformer
-	chain = u.asArray.collect { |x| FFT(LocalBuf(2048), x) };
-	u = IFFT(
-				PV_ConformalMap(chain, real.linlin(0.0,1.0,0.01,2.0), imag.linlin(0.00,1.0,0.01,10.0))
-			).tanh;
-	u = LPF.ar(u, 400);
+	u = 0;
+	u = u + (SinOsc.ar(freq*1.04) * 0.07);
+	u = u + (SinOsc.ar(freq*1) * 0.09);
 	OffsetOut.ar(out, DirtPan.ar(u, ~dirt.numChannels, pan, env));
 }).add;
-
 )
