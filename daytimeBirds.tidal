@@ -4,95 +4,98 @@ setcps (bpm/60/4)
 
 all $ (|* gain 1.1)
 
---
-d1
-  $ every' 2 1 (degradeBy 1)
-  $ sometimesBy 0.9 (|* gain (range 0.85 1 (fast 17 $ rand)))
-  $ mix ((|+ n 12).(|* gain 0.4))
-  $ swingBy (1/32) 8
-  $ sometimesBy 0.3 ((1/128) ~>)
-  $ (|- n "0 5 0 0 5 0 0 5 0 ~!8")
-  $ (|* gain "1 1 0.8 1 1 0.8 1 1 0.8 ~!8")
-  $ someCyclesBy 0.1 (|* gain  "1 1 1 1 1 0 0 0 0 ~!8")
-  $ someCyclesBy 0.2 (|* gain "1 1 1 1 1 1 1 1 0 ~!8")
-  $ s "SinOscSynthBend!3 SinOscSynthBend!3 SinOscSynthBend!3 ~!8"
-  # n (36 + irand 5)
-  # sustain 0.17
-  # accelerate "-8 -8 3 -8 -8 3 -8 -8 3 ~!8"
-  # hpf 8000
-  # real 0.5 # realHpf 100
-  # gain 1.6
-  # room 0.3 # freeverb 0.5 # size 0.8
-  # theta (range 0.3 0.4 (fast 4 rand))
-
---
-d2
-  $ fast (17/7)
-  $ someCyclesBy 0.6 (degradeBy 1)
-  $ (|* gain (range 0.8 1 (fast 7 $ sine)))
-  $ swingBy (1/32) 8
-  $ mix ((|+ n 12).(|* gain 0.4))
-  $ sometimesBy 0.4 (|- accelerate (choose [1,2,3]))
-  $ s "[~SinOscSynthBend]*7"
-  # n 30
-  # sustain (range 0.1 0.15 ((fast 5 rand)*(fast 5 rand)))
-  # accelerate "-4"
-  # hpf 9000
-  # real 0.5 # realHpf 100
-  # gain 2
-  # room 0.3 # freeverb 0.5 # size 0.7
-  # theta (range (-0.3) (-0.5) (fast 31 rand))
-
--- high
-d3
-  $ (|* gain 1.2)
-  $ fast 5
-  $ (|* gain (range 0.7 1 rand))
-  $ mix ((|+ n 12).(|* gain 0.4))
-  $ degradeBy 0.9
-  $ s "~ SinOscSynthBend ~ SinOscSynthBend? ~ ~"
-  # n (46 + irand 5)
-  # sustain (range (0.4) (0.17) rand)
-  # accelerate (range (-5) (-8) rand)
-  # hpf 7500
-  # real 0.5 # realHpf 100
-  # gain 0.85
-  # room 0.1
-  # freeverb 0.5
-  # size 0.8
-  # theta (range (-0.2) (-0.6) (slow 7 sine))
-
--- sparrow
-d4
-  $ fast (4/3)
-  $ someCyclesBy 0.9 (|- n (choose [0,1,2]))
-  $ sometimesBy 0.75 (|* gain 0)
-  $ sometimesBy 0.4 ((1/4) ~>)
-  $ sometimesBy 0.2 (mix ((1/2) ~>))
-  $ someCyclesBy 0.9 (|- n (choose [0,1,2]))
-  $ (|* gain (range 0.4 0.6 sine))
-  $ s "~ ~ SinOscSynthBend!4 ~"
-  # n 40
-  # sustain 0.09
-  # accelerate (-8)
-  # hpf 6000
-  # real 0.5 # realHpf 100
-  # theta (range (0.2) (0) (fast 15 $ rand))
-  # phi (range (-0.5) (0.5) (fast 7 $ rand))
-  # freeverb 0.3 # size 0.7
-  # gain 1.85
-
--- jungleCrow
-d6
-  $ slow 5
-  $ someCyclesBy 0.2 (degradeBy 1)
-  $ (|* gain (range 0.7 0.8 (fast 7 rand)))
-  $ sometimesBy 0.9 (|* gain "1 1!2 0 1!14")
-  $ sometimesBy 0.75 (|* gain "1 1 0 0 1!14")
-  $ (# theta (range (0.5) (1.5) (fast 3 rand)))
-  $ s "~ jungleCrow!2 jungleCrow? ~!14"
-  # sustain (range 0.6 0.8 rand)
-  # room 0.1 # size 0.35
-  # vibratoDepth (range 3 6 (fast 5 rand))
-  # lpf 500
-  # gain 1.25
+do
+  d1
+    $ every' 2 1 (degradeBy 1)
+    $ someCyclesBy 0.5 (degradeBy 1)
+    $ sometimesBy 0.9 (|* gain (range 0.85 1 (fast 17 $ rand)))
+    $ mix ((|+ n 12).(|* gain 0.45))
+    $ swingBy (1/32) 8
+    $ sometimesBy 0.3 ((1/128) ~>)
+    $ (|- n "0 5 0 0 5 0 0 5 0 ~!8")
+    $ (|* gain "1 1 0.8 1 1 0.8 1 1 0.8 ~!8")
+    $ someCyclesBy 0.1 (|* gain  "1 1 1 0 0 0 0 0 0 ~!8")
+    $ someCyclesBy 0.2 (|* gain  "1 1 1 1 1 0 0 0 0 ~!8")
+    $ someCyclesBy 0.3 (|* gain "1 1 1 1 1 1 1 1 0 ~!8")
+    $ s "SinOscSynthBend!3 SinOscSynthBend!3 SinOscSynthBend!3 ~!8"
+    # n (37 + irand 5)
+    # sustain 0.17
+    # accelerate "-8 -8 3 -8 -8 3 -8 -8 3 ~!8"
+    # hpf 8000
+    # real 0.5 # realHpf 500
+    # gain 1.6
+    # room 0.3 # freeverb 0.5 # size 0.6
+    # theta (range (-0.2) (-0.7) (sine))
+  --
+  d2
+    $ fast (17/7)
+    $ someCyclesBy 0.8 (degradeBy 1)
+    $ (|* gain (range 0.8 1 (fast 7 $ sine)))
+    $ swingBy (1/32) 8
+    $ mix ((|+ n 12).(|* gain 0.4))
+    $ sometimesBy 0.4 (|- accelerate (choose [1,2,3]))
+    $ someCyclesBy 0.2 (|+ n 1)
+    $ someCyclesBy 0.1 (|+ n 1)
+    $ someCyclesBy 0.4 (|* gain "1 1 1 1 1 1 0")
+    $ someCyclesBy 0.25 (|* gain "1 1 1 1 1 0 0")
+    $ someCyclesBy 0.1 (|* gain "1 1 1 0 0 0 0")
+    $ s "[~SinOscSynthBend]*7"
+    # n 30
+    # sustain (range 0.09 0.12 ((fast 5 rand)*(fast 5 rand)))
+    # accelerate "-4"
+    # hpf 9000
+    # real 0.5 # realHpf 500
+    # gain 2.2
+    # room 0.3 # freeverb 0.5 # size 0.7
+    # theta (range 0.3 0.5 (fast 4 rand))
+  -- high
+  d3
+    $ (|* gain 1.2)
+    $ fast 5
+    $ (|* gain (range 0.7 1 rand))
+    $ mix ((|+ n 12).(|* gain 0.4))
+    $ someCyclesBy 0.9 (degradeBy 1)
+    $ s "~ SinOscSynthBend ~ SinOscSynthBend? ~ ~"
+    # n (46 + irand 5)
+    # sustain (range (0.4) (0.17) rand)
+    # accelerate (range (-5) (-8) rand)
+    # hpf 7500
+    # real 0.5 # realHpf 400
+    # gain 0.84
+    # room 0.1
+    # freeverb 0.5
+    # size 0.5
+    # theta (range (-0.6) (-1.4) (fast 7 sine))
+  -- sparrow
+  d4
+    $ fast (4/3)
+    $ someCyclesBy 0.9 (|- n (choose [0,1,2]))
+    $ sometimesBy 0.75 (|* gain 0)
+    $ sometimesBy 0.4 ((1/4) ~>)
+    $ sometimesBy 0.2 (mix ((1/2) ~>))
+    $ someCyclesBy 0.9 (|- n (choose [0,1,2]))
+    $ (|* gain (range 0.4 0.6 sine))
+    $ s "~ ~ SinOscSynthBend!4 ~"
+    # n 40
+    # sustain 0.09
+    # accelerate (-8)
+    # hpf 7000
+    # real 0.5 # realHpf 300
+    # theta (range (0.2) (0) (fast 15 $ rand))
+    # phi (range (-0.5) (0.5) (fast 7 $ rand))
+    # freeverb 0.3 # size 0.7
+    # gain 2
+  -- jungleCrow
+  d6
+    $ slow 5
+    $ someCyclesBy 0.2 (degradeBy 1)
+    $ (|* gain (range 0.7 0.8 (fast 7 rand)))
+    $ sometimesBy 0.9 (|* gain "1 1!2 0 1!14")
+    $ sometimesBy 0.75 (|* gain "1 1 0 0 1!14")
+    $ (# theta (range (0.5) (1.5) (fast 3 rand)))
+    $ s "~ jungleCrow!2 jungleCrow? ~!14"
+    # sustain (range 0.6 0.8 rand)
+    # room 0.1 # size 0.35
+    # vibratoDepth (range 3 6 (fast 5 rand))
+    # lpf 500
+    # gain 1.3

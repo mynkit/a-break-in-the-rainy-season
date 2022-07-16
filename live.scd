@@ -3,13 +3,14 @@ SynthDef("background", {
 	arg amp=1;
 	var out=0;
 	p=PinkNoise.ar(1!2);
-	p=HPF.ar(p, 3000);
-	Out.ar(out, p*0.01*amp);
+	p=HPF.ar(p, 50);
+	p=LPF.ar(p, 1000);
+	Out.ar(out, p*0.05*amp);
 }, [1]).add;
 )
 
 b = Synth("background", [\amp, 0]);
-b.set(\amp, 0.5);
+b.set(\amp, 2);
 
 
 
