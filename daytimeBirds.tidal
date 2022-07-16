@@ -126,7 +126,7 @@ do
     $ fast (1.75/3)
     $ someCyclesBy 0.2 (unDegradeBy 1)
     $ fast 1.5
-    $ someCyclesBy 0.5 (degradeBy 1)
+    $ someCyclesBy 0.6 (degradeBy 1)
     $ fast 2
     $ while "f t" (0.005 ~>)
     $ swingBy (1/32) 8
