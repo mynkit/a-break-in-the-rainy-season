@@ -123,8 +123,10 @@ do
     # gain 1.4
   -- turtledove
   d7
-    $ fast (1.75/2)
-    $ someCyclesBy 0.8 (degradeBy 1)
+    $ fast (1.75/3)
+    $ someCyclesBy 0.2 (unDegradeBy 1)
+    $ fast 1.5
+    $ someCyclesBy 0.5 (degradeBy 1)
     $ fast 2
     $ while "f t" (0.005 ~>)
     $ swingBy (1/32) 8
@@ -132,7 +134,7 @@ do
     # n "f5 [f5 <f5,bf5>] <f5,a5,bf5> <af5,bf5>"
     # sustain "0.4 [0.4 0.3] 0.31 0.5"
     # gain 0.9
-    # freeverb 0.5 # size 0.8
-    # theta (range 0.35 0.45 rand)
+    # freeverb 0.7 # size 0.8
+    # theta (range 0.3 0.4 rand)
     # phi 0.3
-    # hpf 900
+    # hpf 1100
