@@ -446,8 +446,8 @@ SynthDef(\turtledove, { arg out, pan=0, sustain=1, freq=410;
 	env = EnvGen.ar(Env.linen(0.04, 0, 1, 1, 5), timeScale: sustain, doneAction:2);
 	freq = freq*(1-freqDiffRate) + EnvGen.ar(Env.linen(0, 0, 1, freq*freqDiffRate, 5), timeScale:sustain);
 	u = 0;
-	u = u + (SinOsc.ar(freq*1.04) * 0.07);
-	u = u + (SinOsc.ar(freq*1) * 0.09);
+	u = u + (SinOsc.ar(freq*1.04) * 0.03);
+	u = u + (SinOsc.ar(freq*1) * 0.1);
 	OffsetOut.ar(out, DirtPan.ar(u, ~dirt.numChannels, pan, env));
 }).add;
 )

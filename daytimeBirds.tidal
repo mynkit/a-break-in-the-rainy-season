@@ -132,7 +132,7 @@ do
     $ swingBy (1/32) 8
     $ s (fit 0 ["turtledove"] "0 ~ 0 0 ~ 0 0 ~")
     # n "f5 [f5 <f5,bf5>] <f5,a5,bf5> <af5,bf5>"
-    # sustain "0.4 [0.4 0.3] 0.31 0.5"
+    # sustain "0.4 [0.3 0.3] 0.3 0.5"
     # gain 0.9
     # freeverb 0.7 # size 0.8
     # theta (range 0.3 0.4 rand)
