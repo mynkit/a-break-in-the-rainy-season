@@ -126,15 +126,32 @@ do
     $ fast (1.75/3)
     $ someCyclesBy 0.2 (unDegradeBy 1)
     $ fast 1.5
-    $ someCyclesBy 0.6 (degradeBy 1)
+    $ someCyclesBy 0.8 (degradeBy 1)
     $ fast 2
-    $ while "f t" (0.005 ~>)
+    $ while "f t t t" (0.005 ~>)
+    $ while "f f f t" (0.002 ~>)
     $ swingBy (1/32) 8
+    $ (|+ n 0.4)
+    $ (|+ n (range (-0.1) 0.1 (fast 17 rand)))
+    $ (|* gain (range 0.9 1 (fast 31 rand)))
     $ s (fit 0 ["turtledove"] "0 ~ 0 0 ~ 0 0 ~")
     # n "f5 [f5 <f5,bf5>] <f5,a5,bf5> <af5,bf5>"
     # sustain "0.4 [0.3 0.3] 0.3 0.5"
     # gain 0.9
     # freeverb 0.7 # size 0.8
-    # theta (range 0.3 0.4 rand)
+    # theta (range 0.3 0.45 rand)
     # phi 0.3
     # hpf 1100
+  -- car
+  d8
+    $ degradeBy 0.8
+    $ slow 1.25
+    $ sometimesBy 0.4 (0.15 ~>)
+    $ sometimesBy 0.3 (mix (0.08 ~>))
+    $ sometimesBy 0.1 (0.03 ~>)
+    $ sometimesBy 0.2 (0.02 ~>)
+    $ s "car"
+    # gain (range 0.9 1.2 (fast 12 $ rand)*(fast 12 $ rand))
+    # sustain (range 2 4 (fast 3 $ rand))
+    # theta (range (-0.7) (-0.5) sine)
+    # freeverb 0.8 # size 0.9 # room 0.7
