@@ -23,7 +23,7 @@ b = Synth("background", [\amp, 0]);
 b.set(\amp, 1.5);
 b.free;
 
-l = Synth("leavesOfTreesEndless", [\amp, 0, \pan, 0.4]);
+l = Synth("leavesOfTreesEndless", [\amp, 0]);
 l.set(\amp, 0.16);
 l.free;
 
