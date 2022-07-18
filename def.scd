@@ -460,6 +460,7 @@ SynthDef("car", {
 	sig=LPF.ar(sig, 5000);
 	freq=Rand(30, 250);
 	sig=BPF.ar(sig, freq+EnvGen.ar(Env.linen(1, 0.1, 1, freq*2, -3), timeScale: sustain));
+	pan = LFPar.ar(0.05).range(pan, [0,-1].choose);
 	OffsetOut.ar(out, DirtPan.ar(sig*0.3*amp, ~dirt.numChannels, pan, env));
 }).add;
 )
