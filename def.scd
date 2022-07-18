@@ -441,12 +441,12 @@ SynthDef(\carrionCrow, { arg out, pan=0, amp=0.1, variation=0.9, sustain=1;
 }).add;
 
 // キジバト
-SynthDef(\turtledove, { arg out, pan=0, sustain=1, freq=410;
-	var dt, n, mul, t, u, chain, env, freqDiffRate=0.1, real=0.5, imag=0;
+SynthDef(\turtledove, { arg out, pan=0, sustain=1, freq=410, slide=0.1, pitch1=0.1;
+	var dt, n, mul, t, u, chain, env, real=0.5, imag=0;
 	env = EnvGen.ar(Env.linen(0.04, 0, 1, 1, 5), timeScale: sustain, doneAction:2);
-	freq = freq*(1-freqDiffRate) + EnvGen.ar(Env.linen(0, 0, 1, freq*freqDiffRate, 5), timeScale:sustain);
+	freq = freq*(1-slide) + EnvGen.ar(Env.linen(0, 0, 1, freq*slide, 5), timeScale:sustain);
 	u = 0;
-	u = u + (SinOsc.ar(freq*1.05) * 0.04);
+	u = u + (SinOsc.ar(freq*1.05) * pitch1*0.1);
 	u = u + (SinOsc.ar(freq*1) * 0.1);
 	OffsetOut.ar(out, DirtPan.ar(u, ~dirt.numChannels, pan, env));
 }).add;
