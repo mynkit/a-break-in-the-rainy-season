@@ -134,6 +134,7 @@ do
     $ (|+ n 0.4)
     $ (|+ n (range (-0.1) 0.1 (fast 17 rand)))
     $ (|* gain (range 0.9 1 (fast 31 rand)))
+    $ someCyclesBy 0.5 ((|* sustain "1 [1.6 1] 1 1").(|* gain "1 [1 0] 1 1"))
     $ stack[
     s (fit 0 ["turtledove"] "0 ~ 0 0 ~ 0 0 ~")
     # n "f5 [f5 f5] f5 ~"
@@ -145,12 +146,12 @@ do
     # slide "0.1 0.1 0.1 0.1"
     # pitch1 "0.2 0.2 0.1 0.1"
     ,
-    s (fit 0 ["turtledove"] "0 ~ 0 0 ~ 0 0 ~")
+    s (fit 0 ["turtledove"] "0 ~ 0 ~ ~ 0 0 ~")
     # n "~ ~ a5 af5"
     # slide "0.15 0.15"
     # pitch1 "0 0 0.2 0.3"
     ]
-    # sustain "0.4 [0.3 0.3] 0.3 0.5"
+    # sustain "0.46 [0.3 0.3] 0.3 0.55"
     # gain 0.9
     # freeverb 0.7 # size 0.8
     # theta (range 0.4 0.55 rand)
