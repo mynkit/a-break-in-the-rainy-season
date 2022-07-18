@@ -134,12 +134,12 @@ do
     $ (|+ n 0.4)
     $ (|+ n (range (-0.1) 0.1 (fast 17 rand)))
     $ (|* gain (range 0.9 1 (fast 31 rand)))
-    $ someCyclesBy 0.5 ((|* sustain "1 [1.6 1] 1 1").(|* gain "1 [1 0] 1 1"))
+    $ someCyclesBy 0.5 ((|* sustain "1 [2 1] 1 1").(|* gain "1 [1 0] 1 1"))
     $ stack[
     s (fit 0 ["turtledove"] "0 ~ 0 0 ~ 0 0 ~")
     # n "f5 [f5 f5] f5 ~"
     # slide "0.12 0.1 0.1 0.1"
-    # pitch1 "0.2 0.15 0.1 0.1"
+    # pitch1 "0.2 0.1 0.1 0.1"
     ,
     s (fit 0 ["turtledove"] "0 ~ 0 0 ~ 0 0 ~")
     # n "~ [~ bf5] bf5 bf5"
@@ -154,7 +154,7 @@ do
     # sustain "0.46 [0.3 0.3] 0.3 0.55"
     # gain 0.9
     # freeverb 0.7 # size 0.8
-    # theta (range 0.4 0.55 rand)
+    # theta (range 0.4 0.6 (slow 3 sine))
     # phi 0.3
     # hpf 1100
   -- car
@@ -167,9 +167,10 @@ do
     $ sometimesBy 0.2 (0.02 ~>)
     $ s "car"
     # gain (range 0.5 1.1 (fast 12 $ rand)*(fast 12 $ rand))
-    # sustain (range 2 4 (fast 3 $ rand))
+    # sustain (range 2 4.5 (fast 3 $ rand))
     # theta (range (-0.7) (-0.5) sine)
-    # freeverb 0.8 # size 0.9 # room 0.7
+    # scReverb 0.8
+  -- leaves of trees
   d9
     $ slow 5
     $ degradeBy 0.4

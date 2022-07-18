@@ -13,8 +13,8 @@ SynthDef("leavesOfTreesEndless", {
 	sig=PinkNoise.ar(1!2);
 	sig=HPF.ar(sig, 1000);
 	sig=LPF.ar(sig, 10000);
-	pan = LFPar.ar(0.1).range(0, 0.9);
-	amp = LFPar.ar(0.03).range(amp*0.5, amp);
+	pan = LFPar.ar(0.1).range(-0.3, 0.9);
+	amp = LFPar.ar(0.03).range(amp*0.3, amp);
 	Out.ar(out, DirtPan.ar(sig*0.1*amp, ~dirt.numChannels, pan));
 }, [30]).add;
 )

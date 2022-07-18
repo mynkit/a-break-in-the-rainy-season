@@ -471,7 +471,7 @@ SynthDef("leavesOfTrees", {
 	sig=HPF.ar(sig, 1000);
 	sig=LPF.ar(sig, 10000);
 	env = EnvGen.ar(Env.linen(1, 0.1, 1.5, 1, 3), timeScale: sustain*0.2, doneAction:2);
-	pan = LFPar.ar(0.1).range(0.1, 0.9);
+	pan = LFPar.ar(0.1).range(-0.1, 0.9);
 	OffsetOut.ar(out, DirtPan.ar(sig*0.08*amp, ~dirt.numChannels, pan, env));
 }, [1]).add;
 )
