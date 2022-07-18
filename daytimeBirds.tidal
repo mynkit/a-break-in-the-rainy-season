@@ -136,14 +136,19 @@ do
     $ (|* gain (range 0.9 1 (fast 31 rand)))
     $ stack[
     s (fit 0 ["turtledove"] "0 ~ 0 0 ~ 0 0 ~")
-    # n "f5 [f5 <f5,bf5>] <f5,bf5> <bf5>"
+    # n "f5 [f5 f5] f5 ~"
     # slide "0.1 0.1 0.1 0.1"
     # pitch1 "0.2 0.15 0.1 0.1"
     ,
     s (fit 0 ["turtledove"] "0 ~ 0 0 ~ 0 0 ~")
+    # n "~ [~ bf5] bf5 bf5"
+    # slide "0.1 0.1 0.1 0.1"
+    # pitch1 "0.2 0.2 0.1 0.1"
+    ,
+    s (fit 0 ["turtledove"] "0 ~ 0 0 ~ 0 0 ~")
     # n "~ ~ a5 af5"
-    # slide "0.3 0.3"
-    # pitch1 "0.1 0.1"
+    # slide "0.15 0.15"
+    # pitch1 "0 0 0.2 0.3"
     ]
     # sustain "0.4 [0.3 0.3] 0.3 0.5"
     # gain 0.9
@@ -164,3 +169,10 @@ do
     # sustain (range 2 4 (fast 3 $ rand))
     # theta (range (-0.7) (-0.5) sine)
     # freeverb 0.8 # size 0.9 # room 0.7
+  d9
+    $ slow 5
+    $ degradeBy 0.4
+    $ s "leavesOfTrees"
+    # gain (range 0.1 0.3 (fast 7 rand))
+    # sustain (range 10 25 (fast 5 rand))
+    # scReverb 0.8
