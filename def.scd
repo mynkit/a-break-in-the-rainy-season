@@ -474,4 +474,14 @@ SynthDef("leavesOfTrees", {
 	pan = LFPar.ar(0.1).range(-0.1, 0.9);
 	OffsetOut.ar(out, DirtPan.ar(sig*0.08*amp, ~dirt.numChannels, pan, env));
 }, [1]).add;
+
+// 家の修理か何かっぽい音
+SynthDef(\nailClapper,{
+	arg out, decay=0, pan=0, freq=110, sustain=0.1;
+	var sig, env;
+	sig=PinkNoise.ar(1!2);
+	sig=HPF.ar(sig,freq);
+	env = EnvGen.ar(Env.linen(0, 0, 0.6, 1, -3), timeScale:sustain, doneAction:2);
+	OffsetOut.ar(out, DirtPan.ar(sig, ~dirt.numChannels, pan, env));
+}).add
 )
